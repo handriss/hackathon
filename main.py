@@ -25,7 +25,6 @@ class PyManMain:
         self.screen.fill((0, 0, 0))
         self.grid = Grid(self.screen, self.width, self.height, 25, 2)
 
-
     def main_loop(self):
         """This is the Main Loop of the Game"""
         while 1:

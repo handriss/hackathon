@@ -1,6 +1,10 @@
 from main import *
 import random
 
+class Player():
+
+    def __init__(self):
+        self.color = (0, 255, 0)
 
 class Tile():
 
@@ -8,6 +12,10 @@ class Tile():
         self.owner = owner
         self.x = x
         self.y = y
+        if owner:
+            self.color = owner.color
+        else:
+            self.color = (105, 105, 105)
 
     def __str__(self):
         return str("x: " + str(self.x) + " y: " + str(self.y))
@@ -39,7 +47,7 @@ class Grid():
     def draw(self):
         for row in self.net:
             for column in row:
-                pygame.draw.rect(self.screen, (random.randint(0, 255), 0, 0), [
+                pygame.draw.rect(self.screen, column.color, [
                     column.x*(self.size), column.y*(self.size), self.size-self.margin, self.size-self.margin
                     ])
 
