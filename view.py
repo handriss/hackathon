@@ -1,11 +1,7 @@
 from main import *
 import random
 import time
-
-
-class Player():
-    def __init__(self):
-        self.color = (255, 0, 0)
+from player import Player
 
 
 class Tile():
@@ -16,7 +12,6 @@ class Tile():
         self.y = y
         if self.owner:
             self.color = owner.color
-            print("valami")
         else:
             self.color = (105, 105, 105)
 
@@ -36,7 +31,6 @@ class Grid():
         self.start_height = start_height
         self.net = []
         self.margin = margin
-        self.player1 = Player()
 
         if width > height:
             self.size = height//piece_count
@@ -69,9 +63,10 @@ class Grid():
         for row in self.net:
             for column in row:
                 try:
-                    owners[column.owner.name] = owners.get(column.owner.name, 0) + 1
+                    owners[column.owner.color] = owners.get(column.owner.color, 0) + 1
                 except AttributeError:
                     owners[None] = owners.get(None, 0) + 1
+        print(owners)
         return owners
 
     def __str__(self):
