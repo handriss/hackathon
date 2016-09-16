@@ -1,38 +1,38 @@
 import os
 import sys
 import pygame
-from grid import *
+from view import *
 from pygame.locals import *
-
-# if not pygame.font: print('Warning, fonts disabled')
-# if not pygame.mixer: print('Warning, sound disabled')
 
 WHITE = (255, 255, 255)
 
 
 class PyManMain:
-    """The Main Class - This class handles the main
-    initialization and creating of the Game."""
 
     def __init__(self, width=1000, height=600):
-        """Initialize"""
-        """Initialize PyGame"""
         pygame.init()
-        """Set the window Size"""
         self.width = width
         self.height = height
-        """Create the Screen"""
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.screen.fill((0, 0, 0))
-        start_width = 100
-        start_height = 50
+
+        clock = pygame.time.Clock()
+        counter, text = 10, '10'.rjust(3)
+        pygame.time.set_timer(pygame.USEREVENT, 1000)
+        font = pygame.font.SysFont('Consolas', 30)
+
+        menu_width = 100
+        menu_height = 50
+        self.menu = Menu(menu_width, menu_height)
+
         self.grid = Grid(
-            self.screen, start_width, start_height, self.width-start_width*2, self.height-start_height, 20, 2
+            self.screen, menu_width, menu_height, self.width-menu_width*2, self.height-menu_height, 20, 2
             )
+        self.menu.countdown(10)
 
     def main_loop(self):
         """This is the Main Loop of the Game"""
-        while 1:
+        while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
@@ -45,3 +45,17 @@ class PyManMain:
 if __name__ == "__main__":
     MainWindow = PyManMain()
     MainWindow.main_loop()
+
+while True:
+    for e in pygame.event.get():
+        if e.type == pygame.USEREVENT:
+            counter -= 1
+            text = str(counter).rjust(3) if counter > 0 else 'boom!'
+        if e.type == pygame.QUIT: break
+    else:
+        screen.fill((255, 255, 255))
+        screen.blit(font.render(text, True, (0, 0, 0)), (32, 48))
+        pygame.display.flip()
+        clock.tick(60)
+        continue
+    break

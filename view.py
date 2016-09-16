@@ -1,5 +1,6 @@
 from main import *
 import random
+import time
 
 
 class Player():
@@ -71,3 +72,14 @@ class Grid():
 
     def __str__(self):
         return str(self.x)
+
+
+class Menu():
+
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        self.clock = pygame.time.Clock()
+        counter, text = 10, '10'.rjust(3)
+        pygame.time.set_timer(pygame.USEREVENT, 1000)
+        font = pygame.font.SysFont('Consolas', 30)
