@@ -10,17 +10,22 @@ class Player():
 
 class Tile():
 
-    def __init__(self, x, y, owner=None):
+    def __init__(self, x, y, owner):
         self.owner = owner
         self.x = x
         self.y = y
-        if owner:
+        if self.owner:
             self.color = owner.color
+            print("valami")
         else:
             self.color = (105, 105, 105)
 
     def __str__(self):
         return str("x: " + str(self.x) + " y: " + str(self.y))
+
+    def update_owner(self, owner):
+        self.owner = owner
+        self.color = owner.color
 
 
 class Grid():
@@ -48,7 +53,7 @@ class Grid():
         for row in range(piece_count_column):
             self.net.append([])
             for column in range(piece_count_row):
-                self.net[row].append(Tile(row, column))
+                self.net[row].append(Tile(row, column, None))
 
     def draw(self):
         for row in self.net:
@@ -68,6 +73,7 @@ class Grid():
                     owners[column.owner.name] = owners.get(column.owner.name, 0) + 1
                 except AttributeError:
                     owners[None] = owners.get(None, 0) + 1
+        # print(owners)
         return owners
 
     def __str__(self):

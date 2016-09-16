@@ -44,10 +44,14 @@ class PyManMain:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     game = False
-                self.player_1, self.player_2 = Event.main_event_handler(event, self.player_1, self.player_2)
+                self.player_1, self.player_2 = Event.player_event_handler(event, self.player_1, self.player_2)
+                self.grid.net = Event.tile_event_handler(self.player_1, self.grid.net)
+                self.grid.draw()
+                # self.grid.net = Event.tile_event_handler(self.player_2, self.grid.net)
 
-            self.grid.draw()
-            
+            # self.grid.draw()
+            self.grid.count_colors()
+
             pygame.display.update()
 
 

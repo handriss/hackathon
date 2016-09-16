@@ -6,7 +6,7 @@ class Event(object):
     """Handles keys and movements of sprints/players."""
 
     @staticmethod
-    def main_event_handler(event, player_1, player_2):
+    def player_event_handler(event, player_1, player_2):
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
@@ -28,3 +28,11 @@ class Event(object):
                 player_2.move('down')
 
         return player_1, player_2
+
+    @staticmethod
+    def tile_event_handler(player, net):
+        print(net[0][0].owner)
+        net[player.x][player.y].update_owner(player)
+
+        # print(net[player.x][player.y].owner)
+        return net
