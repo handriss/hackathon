@@ -34,6 +34,7 @@ class PyManMain:
 
 
             self.grid.draw()
+            self.grid.count_colors()
             pygame.display.update()
 
 

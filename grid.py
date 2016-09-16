@@ -5,6 +5,7 @@ class Player():
 
     def __init__(self):
         self.color = (0, 255, 0)
+        self.name = "Józsi"
 
 class Tile():
 
@@ -27,6 +28,7 @@ class Grid():
         self.screen = screen
         self.net = []
         self.margin = margin
+        player1 = Player()
 
         if width > height:
             self.size = height//piece_count
@@ -42,7 +44,7 @@ class Grid():
         for row in range(piece_count_column):
             self.net.append([])
             for column in range(piece_count_row):
-                self.net[row].append(Tile(row, column))
+                self.net[row].append(Tile(row, column, None))
 
     def draw(self):
         for row in self.net:
@@ -50,6 +52,16 @@ class Grid():
                 pygame.draw.rect(self.screen, column.color, [
                     column.x*(self.size), column.y*(self.size), self.size-self.margin, self.size-self.margin
                     ])
+
+    def count_colors(self):
+        owners = {}
+        for row in self.net:
+            for column in row:
+                try:
+                    owners[column.owner.name] = owners.get(column.owner.name, 0) + 1
+                except AttributeError:
+                    owners[None] = owners.get(None, 0) + 1
+        return owners
 
     def __str__(self):
         return str(self.x)
