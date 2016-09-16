@@ -25,7 +25,7 @@ class PyManMain:
         """Create the Screen"""
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.screen.fill((0, 0, 0))
-        self.grid = Grid(self.screen, self.width, self.height, 25, 2)
+        self.grid = Grid(self.screen, self.width, self.height, 15, 2)
 
     def main_loop(self):
         """This is the Main Loop of the Game"""
@@ -41,9 +41,9 @@ class PyManMain:
                                                           self.grid.size - self.grid.margin
 
                               )
-            player_2 = Player(self.screen, (255, 255, 0), self.grid.net[-1][-1].x * self.grid.size,
-                                                          self.grid.net[-1][-1].y * self.grid.size,
-                                                          self.grid.size - self.grid.margin)
+            player_2 = Player(self.screen, (80, 10, 220), self.grid.net[-1][-1].x * self.grid.size,
+                                                            self.grid.net[-1][-1].y * self.grid.size,
+                                                            self.grid.size - self.grid.margin)
             self.grid.count_colors()
             Event.main_event_handler(player_1, player_2, self.grid.size)
             pygame.display.update()

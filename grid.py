@@ -1,11 +1,6 @@
 from main import *
 import random
 
-class Player():
-
-    def __init__(self):
-        self.color = (0, 255, 0)
-        self.name = "Józsi"
 
 class Tile():
 
@@ -28,7 +23,6 @@ class Grid():
         self.screen = screen
         self.net = []
         self.margin = margin
-        player1 = Player()
 
         if width > height:
             self.size = height//piece_count
