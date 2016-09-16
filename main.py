@@ -1,5 +1,6 @@
 import os, sys
 import pygame
+from grid import *
 from pygame.locals import *
 
 if not pygame.font: print('Warning, fonts disabled')
@@ -21,6 +22,7 @@ class PyManMain:
         self.height = height
         """Create the Screen"""
         self.screen = pygame.display.set_mode((self.width, self.height))
+        self.grid = Grid(self.screen, self.width, self.height, 20)
 
 
     def main_loop(self):
@@ -30,7 +32,8 @@ class PyManMain:
                 if event.type == pygame.QUIT:
                     sys.exit()
 
-            pygame.draw.rect(self.screen, WHITE, [20,20,20,20])
+
+            self.grid.draw()
             pygame.display.update()
 
 
