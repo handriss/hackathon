@@ -4,10 +4,8 @@ import time
 
 
 class Player():
-
     def __init__(self):
-        self.color = (0, 255, 0)
-        self.name = "Józsi"
+        self.color = (255, 0, 0)
 
 
 class Tile():
@@ -33,6 +31,7 @@ class Grid():
         self.start_height = start_height
         self.net = []
         self.margin = margin
+        self.player1 = Player()
 
         if width > height:
             self.size = height//piece_count
@@ -49,7 +48,7 @@ class Grid():
         for row in range(piece_count_column):
             self.net.append([])
             for column in range(piece_count_row):
-                self.net[row].append(Tile(row, column, None))
+                self.net[row].append(Tile(row, column))
 
     def draw(self):
         for row in self.net:
@@ -59,6 +58,7 @@ class Grid():
                     column.y*(self.size) + self.start_height,
                     self.size-self.margin, self.size-self.margin
                     ])
+        # self.net[5][5].owner = self.player1
 
     def count_colors(self):
         owners = {}
@@ -79,7 +79,7 @@ class Menu():
     def __init__(self, width, height):
         self.width = width
         self.height = height
-        self.clock = pygame.time.Clock()
-        counter, text = 10, '10'.rjust(3)
-        pygame.time.set_timer(pygame.USEREVENT, 1000)
-        font = pygame.font.SysFont('Consolas', 30)
+        # self.clock = pygame.time.Clock()
+        # counter, text = 10, '10'.rjust(3)
+        # pygame.time.set_timer(pygame.USEREVENT, 1000)
+        # font = pygame.font.SysFont('Consolas', 30)
