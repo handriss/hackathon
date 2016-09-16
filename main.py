@@ -2,6 +2,8 @@ import os, sys
 import pygame
 from grid import *
 from pygame.locals import *
+from player import Player
+from event import Event
 
 if not pygame.font: print('Warning, fonts disabled')
 if not pygame.mixer: print('Warning, sound disabled')
@@ -34,7 +36,16 @@ class PyManMain:
 
 
             self.grid.draw()
+            player_1 = Player(self.screen, (255, 255, 0), self.grid.net[0][0].x * self.grid.size,
+                                                          self.grid.net[0][0].y * self.grid.size,
+                                                          self.grid.size - self.grid.margin
+
+                              )
+            player_2 = Player(self.screen, (255, 255, 0), self.grid.net[-1][-1].x * self.grid.size,
+                                                          self.grid.net[-1][-1].y * self.grid.size,
+                                                          self.grid.size - self.grid.margin)
             self.grid.count_colors()
+            Event.main_event_handler(player_1, player_2, self.grid.size)
             pygame.display.update()
 
 
