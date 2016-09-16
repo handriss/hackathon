@@ -3,7 +3,6 @@ from player import Player
 
 
 class Event(object):
-    """Handles keys and movements of sprints/players."""
 
     @staticmethod
     def player_event_handler(event, player_1, player_2):
@@ -31,8 +30,6 @@ class Event(object):
 
     @staticmethod
     def tile_event_handler(player, net):
-        print(net[0][0].owner)
         net[player.x][player.y].update_owner(player)
 
-        # print(net[player.x][player.y].owner)
         return net

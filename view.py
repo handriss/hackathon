@@ -63,7 +63,6 @@ class Grid():
                     column.y*(self.size) + self.start_height,
                     self.size-self.margin, self.size-self.margin
                     ])
-        # self.net[5][5].owner = self.player1
 
     def count_colors(self):
         owners = {}
@@ -73,7 +72,6 @@ class Grid():
                     owners[column.owner.name] = owners.get(column.owner.name, 0) + 1
                 except AttributeError:
                     owners[None] = owners.get(None, 0) + 1
-        # print(owners)
         return owners
 
     def __str__(self):
