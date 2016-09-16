@@ -1,12 +1,13 @@
-import os, sys
+import os
+import sys
 import pygame
 from grid import *
 from pygame.locals import *
 
-if not pygame.font: print('Warning, fonts disabled')
-if not pygame.mixer: print('Warning, sound disabled')
+# if not pygame.font: print('Warning, fonts disabled')
+# if not pygame.mixer: print('Warning, sound disabled')
 
-WHITE = (255,255,255)
+WHITE = (255, 255, 255)
 
 
 class PyManMain:
@@ -25,7 +26,9 @@ class PyManMain:
         self.screen.fill((0, 0, 0))
         start_width = 100
         start_height = 50
-        self.grid = Grid(self.screen, start_width, start_height, self.width-start_width*2, self.height-start_height, 20, 2)
+        self.grid = Grid(
+            self.screen, start_width, start_height, self.width-start_width*2, self.height-start_height, 20, 2
+            )
 
     def main_loop(self):
         """This is the Main Loop of the Game"""
@@ -33,7 +36,6 @@ class PyManMain:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
-
 
             self.grid.draw()
             self.grid.count_colors()

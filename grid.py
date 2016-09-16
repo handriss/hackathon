@@ -1,11 +1,13 @@
 from main import *
 import random
 
+
 class Player():
 
     def __init__(self):
         self.color = (0, 255, 0)
         self.name = "Józsi"
+
 
 class Tile():
 
@@ -52,7 +54,9 @@ class Grid():
         for row in self.net:
             for column in row:
                 pygame.draw.rect(self.screen, column.color, [
-                    column.x*(self.size) + self.start_width + self.residual, column.y*(self.size) + self.start_height, self.size-self.margin, self.size-self.margin
+                    column.x*(self.size) + self.start_width + self.residual,
+                    column.y*(self.size) + self.start_height,
+                    self.size-self.margin, self.size-self.margin
                     ])
 
     def count_colors(self):
