@@ -24,16 +24,18 @@ class Tile():
 
 class Grid():
 
-    def __init__(self, screen, width, height, piece_count, margin):
+    def __init__(self, screen, start_width, start_height, width, height, piece_count, margin):
         self.screen = screen
+        self.start_width = start_width
+        self.start_height = start_height
         self.net = []
         self.margin = margin
-        player1 = Player()
 
         if width > height:
             self.size = height//piece_count
             height = self.size
             piece_count_column = width//self.size
+            self.residual = (width % self.size)/2
             piece_count_row = piece_count
         else:
             self.size = width//piece_count
@@ -50,7 +52,7 @@ class Grid():
         for row in self.net:
             for column in row:
                 pygame.draw.rect(self.screen, column.color, [
-                    column.x*(self.size), column.y*(self.size), self.size-self.margin, self.size-self.margin
+                    column.x*(self.size) + self.start_width + self.residual, column.y*(self.size) + self.start_height, self.size-self.margin, self.size-self.margin
                     ])
 
     def count_colors(self):
