@@ -22,7 +22,8 @@ class PyManMain:
         self.height = height
         """Create the Screen"""
         self.screen = pygame.display.set_mode((self.width, self.height))
-        self.grid = Grid(self.screen, self.width, self.height, 20)
+        self.screen.fill((0, 0, 0))
+        self.grid = Grid(self.screen, self.width, self.height, 10)
 
 
     def main_loop(self):
