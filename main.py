@@ -13,7 +13,7 @@ class PyManMain:
     """The Main Class - This class handles the main
     initialization and creating of the Game."""
 
-    def __init__(self, width=640, height=480):
+    def __init__(self, width=800, height=600):
         """Initialize"""
         """Initialize PyGame"""
         pygame.init()
@@ -23,7 +23,7 @@ class PyManMain:
         """Create the Screen"""
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.screen.fill((0, 0, 0))
-        self.grid = Grid(self.screen, self.width, self.height, 10, 2)
+        self.grid = Grid(self.screen, self.width, self.height, 13, 2)
 
 
     def main_loop(self):

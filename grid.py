@@ -21,31 +21,26 @@ class Grid():
         self.margin = margin
 
         if width > height:
-            print(height)
-            print(piece_count)
-            print(self.margin)
             self.size = height//piece_count
-            print(self.size)
-            height = self.size - self.margin
-            width = width//self.size
-            print("Height: " + str(height))
-            print("Width: " + str(width))
+            height = self.size
+            piece_count_column = width//self.size
+            piece_count_row = piece_count
         else:
-            self.size = width//(piece_count + self.margin)
+            self.size = width//piece_count
             width = piece_count
-            height = height//self.size
+            piece_count_row = height//self.size
+            piece_count_column = piece_count
 
-        # print(self.size)
-        for row in range(3):
+        for row in range(piece_count_column):
             self.net.append([])
-            for column in range(3):
+            for column in range(piece_count_row):
                 self.net[row].append(Tile(row, column))
 
     def draw(self):
         for row in self.net:
             for column in row:
                 pygame.draw.rect(self.screen, (random.randint(0, 255), 0, 0), [
-                    column.x*(self.size + self.margin), column.y*(self.size+self.margin), self.size, self.size
+                    column.x*(self.size), column.y*(self.size), self.size-self.margin, self.size-self.margin
                     ])
 
     def __str__(self):
