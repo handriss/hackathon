@@ -46,10 +46,9 @@ class PyManMain:
                     sys.exit()
 
             self.grid.draw()
-            self.player_1.draw()
-            self.player_2.draw()
 
-
+            self.grid.net[self.player_1.x][self.player_1.y] = self.player_1.draw(self.grid.net[self.player_1.x][self.player_1.y])
+            # self.grid.net[self.player_2.x][self.player_2.y] = self.player_2.draw(self.grid.net[self.player_2.x][self.player_2.y])
 
             self.grid.count_colors()
 

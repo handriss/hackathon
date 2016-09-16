@@ -55,6 +55,7 @@ class Grid():
                     owners[column.owner.name] = owners.get(column.owner.name, 0) + 1
                 except AttributeError:
                     owners[None] = owners.get(None, 0) + 1
+        print(owners)
         return owners
 
     def __str__(self):

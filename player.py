@@ -11,11 +11,13 @@ class Player():
         self.size = size
         self.screen = screen
 
-    def draw(self):
+    def draw(self, tile):
         pygame.draw.rect(self.screen, self.color, [self.x, self.y, self.size, self.size])
+        self.set_owner(tile)
 
     def set_owner(self, tile):
-        pass
+        tile.owner = self
+        return tile
 
 
 
