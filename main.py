@@ -1,54 +1,55 @@
-import os, sys
+import os
+import sys
 import pygame
-from grid import *
+from view import *
 from pygame.locals import *
 from player import Player
 from event import Event
 
-if not pygame.font: print('Warning, fonts disabled')
-if not pygame.mixer: print('Warning, sound disabled')
 
-WHITE = (255,255,255)
+class Main:
 
-
-class PyManMain:
-    """The Main Class - This class handles the main
-    initialization and creating of the Game."""
-
-    def __init__(self, width=792, height=600):
-        """Initialize"""
-        """Initialize PyGame"""
+    def __init__(self, width=1000, height=600):
         pygame.init()
-        """Set the window Size"""
         self.width = width
         self.height = height
-        """Create the Screen"""
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.screen.fill((0, 0, 0))
-        self.grid = Grid(self.screen, self.width, self.height, 25, 2)
+
+        clock = pygame.time.Clock()
+        counter, text = 10, '10'.rjust(3)
+        pygame.time.set_timer(pygame.USEREVENT, 1000)
+        font = pygame.font.SysFont('Consolas', 30)
+
+        menu_width = 100
+        menu_height = 50
+        self.menu = Menu(menu_width, menu_height)
+
+        self.grid = Grid(self.screen, menu_width, menu_height, self.width-menu_width*2, self.height-menu_height, 5, 2)
+        upper_left = (0, 0)
+        bottom_right = (self.grid.net[-1][-1].x, self.grid.net[-1][-1].y)
+        maximum = bottom_right
+
+        self.player_1 = Player((255, 255, 0), upper_left, maximum)
+        self.player_2 = Player((80, 10, 220), bottom_right, maximum)
 
     def main_loop(self):
-        """This is the Main Loop of the Game"""
-        while 1:
+        game = True
+        while game:
+
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    sys.exit()
+                    game = False
+                self.player_1, self.player_2 = Event.player_event_handler(event, self.player_1, self.player_2)
+                self.grid.net = Event.tile_event_handler(self.player_1, self.grid.net)
+                self.grid.net = Event.tile_event_handler(self.player_2, self.grid.net)
+                self.grid.draw()
 
-
-            self.grid.draw()
-            player_1 = Player(self.screen, (255, 255, 0), self.grid.net[0][0].x * self.grid.size,
-                                                          self.grid.net[0][0].y * self.grid.size,
-                                                          self.grid.size - self.grid.margin
-
-                              )
-            player_2 = Player(self.screen, (255, 255, 0), self.grid.net[-1][-1].x * self.grid.size,
-                                                          self.grid.net[-1][-1].y * self.grid.size,
-                                                          self.grid.size - self.grid.margin)
             self.grid.count_colors()
-            Event.main_event_handler(player_1, player_2, self.grid.size)
+
             pygame.display.update()
 
 
 if __name__ == "__main__":
-    MainWindow = PyManMain()
-    MainWindow.main_loop()
+    main = Main()
+    main.main_loop()

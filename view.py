@@ -1,19 +1,16 @@
 from main import *
 import random
+import time
+from player import Player
 
-class Player():
-
-    def __init__(self):
-        self.color = (0, 255, 0)
-        self.name = "Józsi"
 
 class Tile():
 
-    def __init__(self, x, y, owner=None):
+    def __init__(self, x, y, owner):
         self.owner = owner
         self.x = x
         self.y = y
-        if owner:
+        if self.owner:
             self.color = owner.color
         else:
             self.color = (105, 105, 105)
@@ -21,19 +18,25 @@ class Tile():
     def __str__(self):
         return str("x: " + str(self.x) + " y: " + str(self.y))
 
+    def update_owner(self, owner):
+        self.owner = owner
+        self.color = owner.color
+
 
 class Grid():
 
-    def __init__(self, screen, width, height, piece_count, margin):
+    def __init__(self, screen, start_width, start_height, width, height, piece_count, margin):
         self.screen = screen
+        self.start_width = start_width
+        self.start_height = start_height
         self.net = []
         self.margin = margin
-        player1 = Player()
 
         if width > height:
             self.size = height//piece_count
             height = self.size
             piece_count_column = width//self.size
+            self.residual = (width % self.size)/2
             piece_count_row = piece_count
         else:
             self.size = width//piece_count
@@ -50,7 +53,9 @@ class Grid():
         for row in self.net:
             for column in row:
                 pygame.draw.rect(self.screen, column.color, [
-                    column.x*(self.size), column.y*(self.size), self.size-self.margin, self.size-self.margin
+                    column.x*(self.size) + self.start_width + self.residual,
+                    column.y*(self.size) + self.start_height,
+                    self.size-self.margin, self.size-self.margin
                     ])
 
     def count_colors(self):
@@ -58,10 +63,22 @@ class Grid():
         for row in self.net:
             for column in row:
                 try:
-                    owners[column.owner.name] = owners.get(column.owner.name, 0) + 1
+                    owners[column.owner.color] = owners.get(column.owner.color, 0) + 1
                 except AttributeError:
                     owners[None] = owners.get(None, 0) + 1
+        print(owners)
         return owners
 
     def __str__(self):
         return str(self.x)
+
+
+class Menu():
+
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        # self.clock = pygame.time.Clock()
+        # counter, text = 10, '10'.rjust(3)
+        # pygame.time.set_timer(pygame.USEREVENT, 1000)
+        # font = pygame.font.SysFont('Consolas', 30)
