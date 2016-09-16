@@ -27,7 +27,7 @@ class Grid():
             piece_count_row = piece_count
         else:
             self.size = width//piece_count
-            width = piece_count
+            width = self.size
             piece_count_row = height//self.size
             piece_count_column = piece_count
 
