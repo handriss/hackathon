@@ -8,12 +8,11 @@ class Event(object):
 
     @staticmethod
     def player_event_handler(player1_joystick, player2_joystick, event, player_1, player_2):
+        if player1_joystick.get_button(0):
+            player_1.move('right')
 
         if event.type == pygame.locals.JOYAXISMOTION:
             player1jx, player1jy = player1_joystick.get_axis(0), player1_joystick.get_axis(1)
-
-            if player1_joystick.get_button(0):
-                player_1.move('right')
             # if player1jx < -0.95 and Event.left is True:
             #     player_1.move('left')
             #     Event.left = False
