@@ -3,28 +3,49 @@ from player import Player
 
 
 class Event(object):
+    left = True
+    right = True
 
     @staticmethod
-    def player_event_handler(event, player_1, player_2):
+    def player_event_handler(player1_joystick, player2_joystick, event, player_1, player_2):
 
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
+        if event.type == pygame.locals.JOYAXISMOTION:
+            player1jx, player1jy = player1_joystick.get_axis(0), player1_joystick.get_axis(1)
+
+            if player1jx < -0.95 and Event.left is True:
                 player_1.move('left')
+                Event.left = False
 
-            elif event.key == pygame.K_a:
-                player_2.move('left')
-            elif event.key == pygame.K_RIGHT:
+            if player1jx > 0.95 and Event.right is True:
                 player_1.move('right')
-            elif event.key == pygame.K_d:
-                player_2.move('right')
-            elif event.key == pygame.K_UP:
-                player_1.move('up')
-            elif event.key == pygame.K_w:
-                player_2.move('up')
-            elif event.key == pygame.K_DOWN:
-                player_1.move('down')
-            elif event.key == pygame.K_s:
-                player_2.move('down')
+                Event.right = False
+
+            if player1jx < -0.25:
+                Event.left = True
+            if player1jx > 0.25:
+                Event.right = True
+            # if player1jy < 0:
+            #     up_counter += 1
+            # if player1jy > 0:
+            #     down_counter += 1
+            # print("Left: " + str(Event.left_counter))
+            # print("Right: " + str(Event.right_counter))
+            # print("Up: " + str(Event.up_counter))
+            # print("DOwn: " + str(Event.down_counter))
+            # print("x: " + str(player1jx))
+            # print("y: " + str(player1jy))
+            # if Event.left_counter > sensitivity:
+            #     player_1.move('left')
+            #     Event.left_counter = 0
+            # elif Event.right_counter > sensitivity:
+            #     player_1.move('right')
+            #     Event.right_counter = 0
+            # elif up_counter > sensitivity:
+            #     player_1.move('up')
+            #     up_counter = 0
+            # elif down_counter > sensitivity:
+            #     player_1.move('down')
+            #     down_counter = 0
 
         return player_1, player_2
 
