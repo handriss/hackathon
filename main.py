@@ -56,6 +56,7 @@ class Main:
         self.mozoghatsz = True
         game = True
         while True:
+            pygame.time.delay(100)
             if game:
                 if int(round(time.time() * 1000)) % 1000 == 0:
                     self.mozoghatsz = True
