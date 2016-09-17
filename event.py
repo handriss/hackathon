@@ -8,7 +8,7 @@ class Event(object):
     @staticmethod
     def player_event_handler(player1_joystick, player2_joystick, event, player_1, player_2):
 
-        sensitivity = 200
+        sensitivity = 60
         if event.type == pygame.locals.JOYAXISMOTION:
             player1jx, player1jy = player1_joystick.get_axis(0), player1_joystick.get_axis(1)
             if player1jx < 0:
