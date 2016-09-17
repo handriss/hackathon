@@ -84,7 +84,7 @@ class Main:
                     self.screen.blit(self.font.render(str(score[self.player_2.color]), True, (255, 255, 255)), (self.width - 100, 50))
 
                     pygame.display.flip()
-                    self.clock.tick(5)
+                    self.clock.tick(60)
                     continue
                 break
 
