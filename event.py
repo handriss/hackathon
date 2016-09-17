@@ -27,12 +27,12 @@ class Event(object):
             # print("DOwn: " + str(down_counter))
             # print("x: " + str(player1jx))
             # print("y: " + str(player1jy))
-            if left_counter > sensitivity:
+            if Event.left_counter > sensitivity:
                 player_1.move('left')
-                cls.left_counter = 0
-            elif right_counter > sensitivity:
+                Event.left_counter = 0
+            elif Event.right_counter > sensitivity:
                 player_1.move('right')
-                cls.right_counter = 0
+                Event.right_counter = 0
             # elif up_counter > sensitivity:
             #     player_1.move('up')
             #     up_counter = 0
