@@ -53,6 +53,7 @@ class Main:
         self.screen.blit(self.font.render(str(score[self.player_2.color]), True, (255, 255, 255)), (495, 140))
 
     def main_loop(self):
+        self.mozoghatsz = True
         game = True
         while True:
             if game:
