@@ -20,7 +20,7 @@ class Main:
         self.clock = pygame.time.Clock()
         self.counter, self.text = 120, '120'.rjust(3)
         pygame.time.set_timer(pygame.USEREVENT, 1000)
-        self.font = pygame.font.SysFont('Consolas', 30)
+        self.font = pygame.font.SysFont('comicsansms', 20)
 
         menu_width = 100
         menu_height = 50
@@ -55,8 +55,17 @@ class Main:
                     break
             else:
                 # self.screen.fill((255, 255, 255))
-                pygame.draw.rect(self.screen, (0, 0, 0), [self.width/2, 10, 50, 20])
+                pygame.draw.rect(self.screen, (0, 0, 0), [self.width/2, 10, 50, 30])
                 self.screen.blit(self.font.render(self.text, True, (255, 255, 255)), (self.width/2, 10))
+                self.screen.blit(self.font.render(self.player_1.name, True, (255, 255, 255)), (20, 20))
+                self.screen.blit(self.font.render(self.player_2.name, True, (255, 255, 255)), (self.width - 100, 20))
+
+                score = self.grid.count_colors()
+                pygame.draw.rect(self.screen, (0, 0, 0), [20, 50, 50, 50])
+                pygame.draw.rect(self.screen, (0, 0, 0), [self.width-100, 50, 50, 50])
+                self.screen.blit(self.font.render(str(score[self.player_1.color]), True, (255, 255, 255)), (20, 50))
+                self.screen.blit(self.font.render(str(score[self.player_2.color]), True, (255, 255, 255)), (self.width - 100, 50))
+
                 pygame.display.flip()
                 self.clock.tick(60)
                 continue
