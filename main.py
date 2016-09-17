@@ -12,6 +12,7 @@ class Main:
 
     def __init__(self, width=1000, height=600):
         pygame.init()
+        pygame.display.set_caption('Conquistador')
         pygame.mixer.music.load('mountain_king.wav')
         pygame.mixer.music.play(loops=1, start=0.0)
         self.width = width
@@ -28,13 +29,13 @@ class Main:
         menu_height = 50
         self.menu = Menu(menu_width, menu_height)
 
-        self.grid = Grid(self.screen, menu_width, menu_height, self.width-menu_width*2, self.height-menu_height, 12, 2)
+        self.grid = Grid(self.screen, menu_width, menu_height, self.width-menu_width*2, self.height-menu_height, 10, 2)
         upper_left = (0, 0)
         bottom_right = (self.grid.net[-1][-1].x, self.grid.net[-1][-1].y)
         maximum = bottom_right
 
-        self.player_1 = Player((255, 255, 0), upper_left, maximum)
-        self.player_2 = Player((80, 10, 220), bottom_right, maximum)
+        self.player_2 = Player((255, 255, 0), upper_left, maximum)
+        self.player_1 = Player((80, 10, 220), bottom_right, maximum)
 
 
     def highscore(self):
@@ -68,14 +69,14 @@ class Main:
                 else:
                     pygame.draw.rect(self.screen, (0, 0, 0), [self.width/2, 10, 50, 30])
                     self.screen.blit(self.font.render(self.text, True, (255, 255, 255)), (self.width/2, 10))
-                    self.screen.blit(self.font.render(self.player_1.name, True, (255, 255, 255)), (20, 20))
-                    self.screen.blit(self.font.render(self.player_2.name, True, (255, 255, 255)), (self.width - 100, 20))
+                    self.screen.blit(self.font.render(self.player_2.name, True, (255, 255, 255)), (20, 20))
+                    self.screen.blit(self.font.render(self.player_1.name, True, (255, 255, 255)), (self.width - 100, 20))
 
                     score = self.grid.count_colors()
                     pygame.draw.rect(self.screen, (0, 0, 0), [20, 50, 50, 50])
                     pygame.draw.rect(self.screen, (0, 0, 0), [self.width-100, 50, 50, 50])
-                    self.screen.blit(self.font.render(str(score[self.player_1.color]), True, (255, 255, 255)), (20, 50))
-                    self.screen.blit(self.font.render(str(score[self.player_2.color]), True, (255, 255, 255)), (self.width - 100, 50))
+                    self.screen.blit(self.font.render(str(score[self.player_2.color]), True, (255, 255, 255)), (20, 50))
+                    self.screen.blit(self.font.render(str(score[self.player_1.color]), True, (255, 255, 255)), (self.width - 100, 50))
 
                     pygame.display.flip()
                     self.clock.tick(60)
