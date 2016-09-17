@@ -5,6 +5,7 @@ from view import *
 from pygame.locals import *
 from player import Player
 from event import Event
+import time
 
 
 class Main:
@@ -17,7 +18,7 @@ class Main:
         self.screen.fill((0, 0, 0))
 
         self.clock = pygame.time.Clock()
-        self.counter, self.text = 10, '10'.rjust(3)
+        self.counter, self.text = 120, '120'.rjust(3)
         pygame.time.set_timer(pygame.USEREVENT, 1000)
         self.font = pygame.font.SysFont('Consolas', 30)
 
@@ -46,12 +47,16 @@ class Main:
                 self.grid.draw()
                 if event.type == pygame.USEREVENT:
                     self.counter -= 1
-                    self.text = str(self.counter).rjust(3) if self.counter > 0 else 'boom!'
+                    self.text = str(self.counter).rjust(3) if self.counter > 0 else 'Game Over!'
+                    if self.text == 'Game Over!':
+                        game = False
+
                 if event.type == pygame.QUIT:
                     break
             else:
                 # self.screen.fill((255, 255, 255))
-                self.screen.blit(self.font.render(self.text, True, (0, 0, 0)), (32, 48))
+                pygame.draw.rect(self.screen, (0, 0, 0), [self.width/2, 10, 50, 20])
+                self.screen.blit(self.font.render(self.text, True, (255, 255, 255)), (self.width/2, 10))
                 pygame.display.flip()
                 self.clock.tick(60)
                 continue
@@ -60,6 +65,7 @@ class Main:
             self.grid.count_colors()
 
             pygame.display.update()
+        # time.sleep(3)
 
 
 if __name__ == "__main__":
