@@ -68,6 +68,7 @@ class Grid():
                     owners[None] = owners.get(None, 0) + 1
         return owners
 
+
     def __str__(self):
         return str(self.x)
 
@@ -81,5 +82,3 @@ class Menu():
         counter, text = 10, '10'.rjust(3)
         pygame.time.set_timer(pygame.USEREVENT, 1000)
         font = pygame.font.SysFont('Consolas', 30)
-
-        
