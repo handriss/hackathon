@@ -18,16 +18,12 @@ class Event(object):
                 up_counter += 1
             if player1jy > 0:
                 down_counter += 1
-            # player2jx, player2jy = player2_joystick.get_axis(0), player2_joystick.get_axis(1)
-            # if player2jx < 0:
-            #     player_2.move('left')
-            # if player2jx > 0:
-            #     player_2.move('right')
-            # if player2jy < 0:
-            #     player_2.move('up')
-            # if player2jy > 0:
-            #     player_2.move('down')
-
+            print("Left: " + left_counter)
+            print("Right: " + right_counter)
+            print("Up: " + up_counter)
+            print("DOwn: " + down_counter)
+            print("x: " + player1jx)
+            print("y: " + player1jy)
             if left_counter > sensitivity:
                 player_1.move('left')
                 left_counter = 0
