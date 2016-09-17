@@ -57,7 +57,7 @@ class Main:
         game = True
         while True:
             if game:
-                if int(round(time.time() * 1000)) % 500 == 0:
+                if int(round(time.time() * 1000)) % 1000 == 0:
                     self.mozoghatsz = True
                 for event in pygame.event.get():
                     print(event)
