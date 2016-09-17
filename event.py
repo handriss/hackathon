@@ -18,12 +18,12 @@ class Event(object):
                 up_counter += 1
             if player1jy > 0:
                 down_counter += 1
-            print("Left: " + left_counter)
-            print("Right: " + right_counter)
-            print("Up: " + up_counter)
-            print("DOwn: " + down_counter)
-            print("x: " + player1jx)
-            print("y: " + player1jy)
+            print("Left: " + str(left_counter))
+            print("Right: " + str(right_counter))
+            print("Up: " + str(up_counter))
+            print("DOwn: " + str(down_counter))
+            print("x: " + str(player1jx))
+            print("y: " + str(player1jy))
             if left_counter > sensitivity:
                 player_1.move('left')
                 left_counter = 0
