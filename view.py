@@ -66,7 +66,6 @@ class Grid():
                     owners[column.owner.color] = owners.get(column.owner.color, 0) + 1
                 except AttributeError:
                     owners[None] = owners.get(None, 0) + 1
-        print(owners)
         return owners
 
     def __str__(self):

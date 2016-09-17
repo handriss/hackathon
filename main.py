@@ -11,6 +11,9 @@ class Main:
 
     def __init__(self, width=1000, height=600):
         pygame.init()
+        pygame.mixer.music.load('mountain_king.wav')
+        # pygame.mixer.music.set_pos(85)
+        pygame.mixer.music.play(loops=1, start=0.0)
         self.width = width
         self.height = height
         self.screen = pygame.display.set_mode((self.width, self.height))
@@ -33,7 +36,10 @@ class Main:
         self.player_1 = Player((255, 255, 0), upper_left, maximum)
         self.player_2 = Player((80, 10, 220), bottom_right, maximum)
 
+
+
     def main_loop(self):
+
         game = True
         while game:
 
@@ -53,3 +59,4 @@ class Main:
 if __name__ == "__main__":
     main = Main()
     main.main_loop()
+    pygame.mixer.music.stop()
