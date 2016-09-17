@@ -12,19 +12,21 @@ class Event(object):
         if event.type == pygame.locals.JOYAXISMOTION:
             player1jx, player1jy = player1_joystick.get_axis(0), player1_joystick.get_axis(1)
 
-            if player1jx < -0.95 and Event.left is True:
+            if player1_joystick.get_button(0):
                 player_1.move('left')
-                Event.left = False
-
-            if player1jx > 0.95 and Event.right is True:
-                player_1.move('right')
-                Event.right = False
-
-            if player1jx < -0.25:
-                Event.left = True
-            if player1jx > 0.25:
-                Event.right = True
-            # if player1jy < 0:
+            # if player1jx < -0.95 and Event.left is True:
+            #     player_1.move('left')
+            #     Event.left = False
+            #
+            # if player1jx > 0.95 and Event.right is True:
+            #     player_1.move('right')
+            #     Event.right = False
+            #
+            # if player1jx < -0.25:
+            #     Event.left = True
+            # if player1jx > 0.25:
+            #     Event.right = True
+            # # if player1jy < 0:
             #     up_counter += 1
             # if player1jy > 0:
             #     down_counter += 1
