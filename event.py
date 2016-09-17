@@ -8,6 +8,7 @@ class Event(object):
 
     @staticmethod
     def player_event_handler(mozoghatsz, player1_joystick, player2_joystick, event, player_1, player_2):
+        print("Event handler")
         if player1_joystick.get_button(0):
             if mozoghatsz is True:
                 player_1.move('right')
