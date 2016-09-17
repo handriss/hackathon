@@ -3,11 +3,15 @@ import pygame
 
 class Player(object):
 
+    ID = 0
+
     def __init__(self, color, position, maximum):
         self.color = color
         self.x = position[0]
         self.y = position[1]
         self.maximum = maximum
+        Player.ID += 1
+        self.name = 'Player ' + str(Player.ID)
 
     def move(self, direction):
         if direction == "left" and self.x > 0:
