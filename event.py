@@ -1,5 +1,6 @@
 import pygame
 from player import Player
+import time
 
 
 class Event(object):
@@ -9,6 +10,7 @@ class Event(object):
 
         if event.type == pygame.locals.JOYAXISMOTION:
             player1jx, player1jy = player1_joystick.get_axis(0), player1_joystick.get_axis(1)
+            time.sleep(0.05)
             if player1jx < 0:
                 player_1.move('left')
             if player1jx > 0:
@@ -17,7 +19,7 @@ class Event(object):
                 player_1.move('up')
             if player1jy > 0:
                 player_1.move('down')
-            player2jx, player2jy = player2_joystick.get_axis(0), player2_joystick.get_axis(1)
+            player2jx, player2jy = player2_joystick.get_axis(0)/10, player2_joystick.get_axis(1)
             if player2jx < 0:
                 player_2.move('left')
             if player2jx > 0:
