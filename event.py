@@ -5,18 +5,18 @@ from player import Player
 class Event(object):
     left_counter = right_counter = up_counter = down_counter = 0
 
-    @classmethod
-    def player_event_handler(cls, player1_joystick, player2_joystick, event, player_1, player_2):
+    @staticmethod
+    def player_event_handler(player1_joystick, player2_joystick, event, player_1, player_2):
 
         sensitivity = 50
         if event.type == pygame.locals.JOYAXISMOTION:
             player1jx, player1jy = player1_joystick.get_axis(0), player1_joystick.get_axis(1)
             if player1jx < 0:
                 player_1.move('left')
-                cls.left_counter += 1
+                Event.left_counter += 1
             if player1jx > 0:
                 player_1.move('right')
-                cls.right_counter += 1
+                Event.right_counter += 1
             # if player1jy < 0:
             #     up_counter += 1
             # if player1jy > 0:
