@@ -12,7 +12,7 @@ class Main:
 
     def __init__(self, width=1000, height=600):
         pygame.init()
-        pygame.key.set_repeat()
+        # pygame.key.set_repeat()
 
         self.width = width
         self.height = height
