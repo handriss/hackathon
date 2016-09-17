@@ -5,7 +5,7 @@ from player import Player
 class Event(object):
 
     @staticmethod
-    def player_event_handler(event, player_1, player_2):
+    def player_event_handler(player1_joystick, player2_joystick, event, player_1, player_2):
 
         if event.type == pygame.locals.JOYAXISMOTION:
             player1jx, player1jy = player1_joystick.get_axis(0), player1_joystick.get_axis(1)

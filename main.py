@@ -35,15 +35,15 @@ class Main:
         self.player_2 = Player((80, 10, 220), bottom_right, maximum)
 
         try:
-           pygame.joystick.init()
-           joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
-           joysticks[0].init()
-           joysticks[1].init()
-           player1_joystick = joysticks[0]
-           player2_joystick = joysticks[1]
+            pygame.joystick.init()
+            joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
+            joysticks[0].init()
+            joysticks[1].init()
+            self.player1_joystick = joysticks[0]
+            self.player2_joystick = joysticks[1]
         except IndexError:
-           player1_joystick = None
-           player2_joystick = None
+            self.player1_joystick = None
+            self.player2_joystick = None
 
     def highscore(self):
         score = self.grid.count_colors()
@@ -59,7 +59,7 @@ class Main:
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         game = False
-                    self.player_1, self.player_2 = Event.player_event_handler(event, self.player_1, self.player_2)
+                    self.player_1, self.player_2 = Event.player_event_handler(self.player1_joystick, self.player2_joystick, event, self.player_1, self.player_2)
                     self.grid.net = Event.tile_event_handler(self.player_1, self.grid.net)
                     self.grid.net = Event.tile_event_handler(self.player_2, self.grid.net)
                     self.grid.draw()
