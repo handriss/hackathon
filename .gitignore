@@ -6,3 +6,7 @@ venv/
 
 # pycache
 *.pyc
+
+# mac stuff
+.DS_Store
+
