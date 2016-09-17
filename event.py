@@ -7,47 +7,22 @@ class Event(object):
     right = True
 
     @staticmethod
-    def player_event_handler(player1_joystick, player2_joystick, event, player_1, player_2):
+    def player_event_handler(mozoghatsz, player1_joystick, player2_joystick, event, player_1, player_2):
+        if player1_joystick.get_button(0):
+            if mozoghatsz is True:
+                player_1.move('right')
+                mozoghatsz = False
 
         if event.type == pygame.locals.JOYAXISMOTION:
             player1jx, player1jy = player1_joystick.get_axis(0), player1_joystick.get_axis(1)
-
-            if player1jx < -0.95 and Event.left is True:
+            if player1jx < 0:
                 player_1.move('left')
-                Event.left = False
-
-            if player1jx > 0.95 and Event.right is True:
+                mozoghatsz = False
+            elif player1jy > 0:
                 player_1.move('right')
-                Event.right = False
+                mozoghatsz = False
 
-            if player1jx < -0.25:
-                Event.left = True
-            if player1jx > 0.25:
-                Event.right = True
-            # if player1jy < 0:
-            #     up_counter += 1
-            # if player1jy > 0:
-            #     down_counter += 1
-            # print("Left: " + str(Event.left_counter))
-            # print("Right: " + str(Event.right_counter))
-            # print("Up: " + str(Event.up_counter))
-            # print("DOwn: " + str(Event.down_counter))
-            # print("x: " + str(player1jx))
-            # print("y: " + str(player1jy))
-            # if Event.left_counter > sensitivity:
-            #     player_1.move('left')
-            #     Event.left_counter = 0
-            # elif Event.right_counter > sensitivity:
-            #     player_1.move('right')
-            #     Event.right_counter = 0
-            # elif up_counter > sensitivity:
-            #     player_1.move('up')
-            #     up_counter = 0
-            # elif down_counter > sensitivity:
-            #     player_1.move('down')
-            #     down_counter = 0
-
-        return player_1, player_2
+        return mozoghatsz, player_1, player_2
 
     @staticmethod
     def tile_event_handler(player, net):
