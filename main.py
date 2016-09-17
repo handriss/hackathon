@@ -44,12 +44,24 @@ class Main:
         self.screen.blit(self.font.render(str(self.player_2.name), True, (255, 255, 255)), (450, 110))
         self.screen.blit(self.font.render(str(score[self.player_2.color]), True, (255, 255, 255)), (495, 140))
 
+    def startpic(self):
+        text = "PREPARE!"
+        self.screen.blit(self.font.render(str(text), True, (255, 255, 255)), (450, 50))
+
+
+
 
     def main_loop(self):
 
+        self.startpic()
+        pygame.display.update()
+        time.sleep(3)
+        self.screen.fill((0, 0, 0))
+        pygame.display.update()
         game = True
         while True:
             if game:
+
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         game = False
