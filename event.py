@@ -11,8 +11,10 @@ class Event(object):
         if event.type == pygame.locals.JOYAXISMOTION:
             player1jx, player1jy = player1_joystick.get_axis(0), player1_joystick.get_axis(1)
             if player1jx < 0:
+                player_1.move('left')
                 left_counter += 1
             if player1jx > 0:
+                player_1.move('right')
                 right_counter += 1
             if player1jy < 0:
                 up_counter += 1
