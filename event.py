@@ -6,7 +6,7 @@ class Event(object):
     left_counter = right_counter = up_counter = down_counter = 0
 
     @classmethod
-    def player_event_handler(player1_joystick, player2_joystick, event, player_1, player_2):
+    def player_event_handler(cls, player1_joystick, player2_joystick, event, player_1, player_2):
 
         sensitivity = 50
         if event.type == pygame.locals.JOYAXISMOTION:
