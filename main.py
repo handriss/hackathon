@@ -21,7 +21,7 @@ class Main:
         self.screen.fill((0, 0, 0))
 
         self.clock = pygame.time.Clock()
-        self.counter, self.text = 60, '60git '.rjust(3)
+        self.counter, self.text = 60, '60'.rjust(3)
         pygame.time.set_timer(pygame.USEREVENT, 1000)
         self.font = pygame.font.SysFont('comicsansms', 20)
 
