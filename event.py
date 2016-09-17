@@ -3,36 +3,43 @@ from player import Player
 
 
 class Event(object):
-    left_counter = right_counter = up_counter = down_counter = 0
+    left = True
+    right = True
 
     @staticmethod
     def player_event_handler(player1_joystick, player2_joystick, event, player_1, player_2):
 
-        sensitivity = 60
         if event.type == pygame.locals.JOYAXISMOTION:
             player1jx, player1jy = player1_joystick.get_axis(0), player1_joystick.get_axis(1)
-            if player1jx < 0:
+
+            if player1jx < -0.95 and Event.left is True:
                 player_1.move('left')
-                Event.left_counter += 1
-            if player1jx > 0:
+                Event.left = False
+
+            if player1jx > 0.95 and Event.right is True:
                 player_1.move('right')
-                Event.right_counter += 1
+                Event.right = False
+
+            if player1jx < -0.25:
+                Event.left = True
+            if player1jx > 0.25:
+                Event.right = True
             # if player1jy < 0:
             #     up_counter += 1
             # if player1jy > 0:
             #     down_counter += 1
-            print("Left: " + str(Event.left_counter))
-            print("Right: " + str(Event.right_counter))
-            print("Up: " + str(Event.up_counter))
-            print("DOwn: " + str(Event.down_counter))
-            print("x: " + str(player1jx))
-            print("y: " + str(player1jy))
-            if Event.left_counter > sensitivity:
-                player_1.move('left')
-                Event.left_counter = 0
-            elif Event.right_counter > sensitivity:
-                player_1.move('right')
-                Event.right_counter = 0
+            # print("Left: " + str(Event.left_counter))
+            # print("Right: " + str(Event.right_counter))
+            # print("Up: " + str(Event.up_counter))
+            # print("DOwn: " + str(Event.down_counter))
+            # print("x: " + str(player1jx))
+            # print("y: " + str(player1jy))
+            # if Event.left_counter > sensitivity:
+            #     player_1.move('left')
+            #     Event.left_counter = 0
+            # elif Event.right_counter > sensitivity:
+            #     player_1.move('right')
+            #     Event.right_counter = 0
             # elif up_counter > sensitivity:
             #     player_1.move('up')
             #     up_counter = 0
