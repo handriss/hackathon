@@ -57,6 +57,7 @@ class Main:
         while True:
             if game:
                 for event in pygame.event.get():
+                    print(event)
                     if event.type == pygame.QUIT:
                         game = False
                     self.player_1, self.player_2 = Event.player_event_handler(self.player1_joystick, self.player2_joystick, event, self.player_1, self.player_2)
