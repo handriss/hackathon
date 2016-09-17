@@ -56,11 +56,13 @@ class Main:
         game = True
         while True:
             if game:
+                if int(round(time.time() * 1000)) % 500 == 0:
+                    self.mozoghatsz = True
                 for event in pygame.event.get():
                     print(event)
                     if event.type == pygame.QUIT:
                         game = False
-                    self.player_1, self.player_2 = Event.player_event_handler(self.player1_joystick, self.player2_joystick, event, self.player_1, self.player_2)
+                    self.mozoghatsz, self.player_1, self.player_2 = Event.player_event_handler(self.mozoghatsz, self.player1_joystick, self.player2_joystick, event, self.player_1, self.player_2)
                     self.grid.net = Event.tile_event_handler(self.player_1, self.grid.net)
                     self.grid.net = Event.tile_event_handler(self.player_2, self.grid.net)
                     self.grid.draw()
